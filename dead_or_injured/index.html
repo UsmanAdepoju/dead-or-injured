@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dead or Injured: You vs Computer</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Dead or Injured</h1>
+
+    <!-- SETUP -->
+    <section id="game-setup">
+      <p>Enter your secret (4 unique digits):</p>
+      <div class="grid" id="secret-picker">
+        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="sec-0" class="digit-input" />
+        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="sec-1" class="digit-input" />
+        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="sec-2" class="digit-input" />
+        <input type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" id="sec-3" class="digit-input" />
+      </div>
+      
+      <button id="start-btn" disabled>Start Game</button>
+      <button id="howto-btn">How to Play</button>
+      <p id="secret-error" class="error"></p>
+    </section>
+
+    <!-- HOW TO PLAY -->
+    <section id="how-to-play" hidden>
+      <div class="panel">
+        <h2>How to Play</h2>
+        <ol class="howto-list">
+          <li>
+            <strong>Set Your Secret:</strong>
+            Pick <em>4 unique digits</em> and keep them hidden.
+          </li>
+          <li>
+            <strong>Your Turn:</strong>
+            Enter a new 4-digit guess (no repeats).
+          </li>
+          <li>
+            <strong>Feedback:</strong>
+            <ul>
+              <li><strong>Dead:</strong> Correct digit in the correct spot.</li>
+              <li><strong>Injured:</strong> Correct digit but in the wrong spot.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Alternate:</strong>
+            After you guess, the computer makes its guess.
+          </li>
+          <li>
+            <strong>Win:</strong>
+            First to reach <strong>4 Dead</strong> wins the game.
+          </li>
+        </ol>
+        <button id="back-btn">Back</button>
+      </div>
+    </section>
+
+    <!-- PLAY -->
+    <section id="game-play" hidden>
+      <!-- User panel -->
+      <div class="panel" id="user-panel">
+        <div class="turn-indicator">Your Turn</div>
+        <h2>Your Guess</h2>
+        <p id="user-attempts">Attempts: 0</p>
+        <div class="progress" id="user-progress">
+          <div class="segment"></div><div class="segment"></div>
+          <div class="segment"></div><div class="segment"></div>
+        </div>
+        <div class="grid" id="user-guess-row"></div>
+        <p id="guess-error" class="error"></p>
+        <button id="user-submit-btn" disabled>Submit Guess</button>
+        <div class="feedback" id="user-feedback"></div>
+        <div class="history">
+          <h4>Your History</h4>
+          <table>
+            <thead><tr><th>Guess</th><th>Result</th></tr></thead>
+            <tbody id="user-history-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Computer panel -->
+      <div class="panel" id="computer-panel">
+        <div class="turn-indicator">Computer’s Turn</div>
+        <h2>Computer’s Guess</h2>
+        <p id="computer-attempts">Attempts: 0</p>
+        <div class="progress" id="computer-progress">
+          <div class="segment"></div><div class="segment"></div>
+          <div class="segment"></div><div class="segment"></div>
+        </div>
+        <p id="computer-guess">Computer guesses: – – – –</p>
+        <div class="feedback" id="computer-feedback"></div>
+        <div class="history">
+          <h4>Computer’s History</h4>
+          <table>
+            <thead><tr><th>Guess</th><th>Result</th></tr></thead>
+            <tbody id="computer-history-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Audio -->
+  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+  <audio id="win-sound" src="pop.mp3" preload="auto"></audio>
+
+  <!-- Modal Overlay -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <p id="modal-message"></p>
+    <button id="modal-close">OK</button>
+  </div>
+</div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
