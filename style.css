@@ -52,6 +52,22 @@ section {
   padding: 0;
 }
 
+/* 1. Two-column layout by default */
+#game-play {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* 2. Stack only on very narrow screens */
+@media (max-width: 480px) {
+  #game-play {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 /* Body & Typography */
 body {
   font-family: var(--body-font);
@@ -87,13 +103,7 @@ h2, h4 {
   box-sizing: border-box;
 }
 
-/*  Responsive play area: 2 columns down to 280px, then auto-wrap */
-#game-play {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
+
 
 /* Distinct panel backgrounds */
 #user-panel { background-color: var(--user-bg); }
