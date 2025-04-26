@@ -157,6 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSection.hidden = true;
     playSection.hidden  = false;
 
+  // **New:** show the user’s secret**
+  document.getElementById('user-secret').textContent =
+  'Secret: ' + userSecret.join(' ');
+
     userAttempts = 0;
     compAttempts = 0;
     updateAttempts(userAttemptsP, userAttempts);
